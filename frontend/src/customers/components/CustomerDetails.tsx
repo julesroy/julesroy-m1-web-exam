@@ -48,7 +48,7 @@ export const CustomerDetails = ({ customerId }: CustomerDetailsProps) => {
         {isLoading ? (
           <Skeleton.Input active size="large" />
         ) : (
-          <Title level={2} style={{ margin: 0 }}>
+          <Title level={2} style={{ margin: 0, color: "white" }}>
             {customer
               ? `${customer.lastName} ${customer.firstName}`
               : "Customer not found"}

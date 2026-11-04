@@ -9,7 +9,7 @@ import {
   ParseUUIDPipe,
   Patch,
   Post,
-  Query
+  Query,
 } from "@nestjs/common";
 import { CustomersService } from "./customers.service";
 import {
@@ -18,7 +18,11 @@ import {
 } from "./dto/bike-sell-response.dto";
 import { CreateBikeSellDto } from "./dto/create-bike-sell.dto";
 import { CreateCustomerDto } from "./dto/create-customer.dto";
-import { CustomerResponseDto, PaginatedCustomersResponseDto, PaginationQueryDto } from "./dto/customer-response.dto";
+import {
+  CustomerResponseDto,
+  PaginatedCustomersResponseDto,
+  PaginationQueryDto,
+} from "./dto/customer-response.dto";
 import { UpdateCustomerDto } from "./dto/update-customer.dto";
 import type {
   CreateCustomerModel,
@@ -29,7 +33,7 @@ import type {
 export class CustomersController {
   constructor(
     @Inject(CustomersService) private readonly service: CustomersService,
-  ) { }
+  ) {}
 
   // pagination exo 1
   @Get()

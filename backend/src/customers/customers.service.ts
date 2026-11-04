@@ -15,7 +15,7 @@ import type {
   CreateCustomerModel,
   CustomerModel,
   UpdateCustomerModel,
-  PaginatedCustomersModel
+  PaginatedCustomersModel,
 } from "./models/customer.model";
 import {
   BikeNotFoundError,
@@ -28,11 +28,19 @@ export class CustomersService {
   constructor(
     @Inject(CustomersRepository)
     private readonly repository: CustomersRepository,
-  ) { }
+  ) {}
 
   // pagination exo 1
   // on retourne le nombre total de clients et les clients de la page actuelle
-  findAll(page: number, limit: number): Promise<PaginatedCustomersModel> {
+  findAll(): Promise<CustomerModel[]>;
+  findAll(page: number, limit: number): Promise<PaginatedCustomersModel>;
+  findAll(
+    page?: number,
+    limit?: number,
+  ): Promise<CustomerModel[] | PaginatedCustomersModel> {
+    if (page === undefined || limit === undefined) {
+      return this.repository.findAll();
+    }
     return this.repository.findAll(page, limit);
   }
 

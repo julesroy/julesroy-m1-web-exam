@@ -15,8 +15,10 @@ export const HomePage = () => {
       }}
     >
       <div>
-        <Title level={2}>Welcome to Bikez.ai</Title>
-        <Paragraph>
+        <Title level={2} style={{ color: "white" }}>
+          Welcome to Bikez.ai
+        </Title>
+        <Paragraph style={{ color: "white" }}>
           Manage your bike shop's customers and keep track of every bike they
           bought.
         </Paragraph>

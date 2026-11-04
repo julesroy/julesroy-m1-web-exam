@@ -1,4 +1,7 @@
-import type { CustomerModel, PaginatedCustomersModel } from "../models/customer.model";
+import type {
+  CustomerModel,
+  PaginatedCustomersModel,
+} from "../models/customer.model";
 import { Type } from "class-transformer";
 import { IsInt, IsOptional, Max, Min } from "class-validator";
 
@@ -40,10 +43,14 @@ export class PaginatedCustomersResponseDto {
   totalCount: number;
   customers: CustomerResponseDto[];
 
-  static fromModel(model: PaginatedCustomersModel): PaginatedCustomersResponseDto {
+  static fromModel(
+    model: PaginatedCustomersModel,
+  ): PaginatedCustomersResponseDto {
     return {
       totalCount: model.totalCount,
-      customers: model.customers.map((customer) => CustomerResponseDto.fromModel(customer)), // on cree un customer response dto pour chaque customer model
+      customers: model.customers.map((customer) =>
+        CustomerResponseDto.fromModel(customer),
+      ), // on cree un customer response dto pour chaque customer model
     };
   }
 }

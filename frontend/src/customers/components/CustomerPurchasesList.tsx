@@ -14,7 +14,7 @@ export const CustomerPurchasesList = ({
 }: CustomerPurchasesListProps) => {
   return (
     <Space orientation="vertical" style={{ width: "100%" }}>
-      <Title level={3} style={{ margin: 0 }}>
+      <Title level={3} style={{ margin: 0, color: "white" }}>
         Purchases
       </Title>
       {isLoading ? (

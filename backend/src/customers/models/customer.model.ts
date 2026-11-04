@@ -27,6 +27,6 @@ export type UpdateCustomerModel = Partial<CreateCustomerModel>;
 
 // pagination exo 1
 export interface PaginatedCustomersModel {
-  totalCount: number; // nombre total de clients
-  customers: CustomerModel[]; // liste des clients sur la page actuelle
+  totalCount: number; // nombre total de customers
+  customers: CustomerModel[]; // liste des customers sur la page actuelle
 }
