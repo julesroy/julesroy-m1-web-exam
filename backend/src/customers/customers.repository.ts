@@ -13,6 +13,7 @@ import type {
   CreateCustomerModel,
   CustomerModel,
   UpdateCustomerModel,
+  PaginatedCustomersModel
 } from "./models/customer.model";
 import {
   BikeNotFoundError,
@@ -23,13 +24,25 @@ import type { PurchasedBikeModel } from "./models/purchased-bike.model";
 
 @Injectable()
 export class CustomersRepository {
-  constructor(@InjectDataSource() private readonly dataSource: DataSource) {}
+  constructor(@InjectDataSource() private readonly dataSource: DataSource) { }
 
-  async findAll(): Promise<CustomerModel[]> {
-    const entities = await this.dataSource
+  // pagination exo 1
+  // on utilise findAndCount pour recuperer le nombre total de clients et les clients de la page actuelle
+  async findAll(
+    page: number,
+    limit: number,
+  ): Promise<PaginatedCustomersModel> {
+    const [entities, totalCount] = await this.dataSource
       .getRepository(CustomerEntity)
-      .find({ order: { lastName: "ASC", firstName: "ASC", id: "ASC" } });
-    return entities.map((entity) => this.toCustomerModel(entity));
+      .findAndCount({
+        order: { lastName: "ASC", firstName: "ASC", id: "ASC" },
+        skip: (page - 1) * limit,
+        take: limit,
+      });
+    return {
+      totalCount,
+      customers: entities.map((entity) => this.toCustomerModel(entity)),
+    };
   }
 
   async findById(id: string): Promise<CustomerModel | null> {

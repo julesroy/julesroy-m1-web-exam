@@ -25,3 +25,9 @@ export type CreateCustomerModel = {
   city?: string;
   country?: string;
 };
+
+// modele reponse paginee pour les customers exo 1
+export type PaginatedCustomersModel = {
+  totalCount: number;
+  customers: CustomerModel[];
+};
